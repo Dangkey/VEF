@@ -1,0 +1,15 @@
+svg{
+  z-index: 9999;
+  display: block;
+  margin: auto;
+}
+#contents{
+  top: 10px;
+  position: absolute;
+  display: block;
+  margin: auto;
+
+}
+#contents img{
+  width: 20vw;
+}
