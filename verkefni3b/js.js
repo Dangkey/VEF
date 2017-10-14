@@ -1,9 +1,12 @@
+var stormtrooper;
 var width = window.innerWidth;
 var height = window.innerHeight;
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(25, width / height, 0.1, 1000);
 
-var renderer = new THREE.WebGLRenderer({antialias:true});
+var renderer = new THREE.WebGLRenderer({
+  antialias: true
+});
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 renderer.setClearColor(0xf0f0f0, 1);
@@ -11,27 +14,30 @@ renderer.setClearColor(0xf0f0f0, 1);
 controls = new THREE.OrbitControls(camera, renderer.domElement);
 // create the cube
 var geometry = new THREE.BoxGeometry(1, 1, 1);
-for ( var i = 0; i < geometry.faces.length; i += 2 ) {
+for (var i = 0; i < geometry.faces.length; i += 2) {
 
-					var hex = Math.random() * 0xffffff;
-					geometry.faces[ i ].color.setHex( hex );
-					geometry.faces[ i + 1 ].color.setHex( hex );
+  var hex = Math.random() * 0xffffff;
+  geometry.faces[i].color.setHex(hex);
+  geometry.faces[i + 1].color.setHex(hex);
 
-				}
+}
 var material = new THREE.MeshPhysicalMaterial({
   vertexColors: THREE.FaceColors
 });
 var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
-var manager = new THREE.LoadingManager();
-				manager.onProgress = function ( item, loaded, total ) {
-									};
+var loadingManager = new THREE.LoadingManager( function() {
 
-        var loader = new THREE.ObjectLoader();
-        loader.load("toilet.json",function ( obj ) {
-             scene.add( obj );
-        });
+					scene.add( stormtrooper );
+
+				} );
+
+var loader = new THREE.ColladaLoader(loadingManager);
+loader.options.convertUpAxis = true;
+loader.load("stormtrooper.dae", function(obj) {
+  stormtrooper = collada.scene;
+});
 
 // create lights
 
