@@ -32,7 +32,7 @@ var manager = new THREE.LoadingManager();
 				};
 
         var loader = new THREE.ObjectLoader();
-        loader.load("3dObject.json",function ( obj ) {
+        loader.load("toilet.json",function ( obj ) {          
              scene.add( obj );
         });
 
