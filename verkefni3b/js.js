@@ -10,7 +10,7 @@ renderer.setClearColor(0xf0f0f0, 1);
 
 controls = new THREE.OrbitControls(camera, renderer.domElement);
 // create the cube
-var geometry = new THREE.BoxGeometry(100, 100, 100);
+var geometry = new THREE.BoxGeometry(1, 1, 1);
 for ( var i = 0; i < geometry.faces.length; i += 2 ) {
 
 					var hex = Math.random() * 0xffffff;
@@ -26,13 +26,10 @@ scene.add(cube);
 
 var manager = new THREE.LoadingManager();
 				manager.onProgress = function ( item, loaded, total ) {
-
-					console.log( item, loaded, total );
-
-				};
+									};
 
         var loader = new THREE.ObjectLoader();
-        loader.load("toilet.json",function ( obj ) {          
+        loader.load("toilet.json",function ( obj ) {
              scene.add( obj );
         });
 
@@ -44,7 +41,7 @@ light.position.set(20, 20, 20);
 scene.add(light);
 
 // set the camera
-camera.position.z = 500;
+camera.position.z = 5;
 
 // define an animation loop
 var render = function() {
