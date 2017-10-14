@@ -1,0 +1,7 @@
+1. WebGL er javascript API og er notaður til þess að sýna 2d og 3d graphics á browserum sem styðja það.
+2. GPU er skjákort, það tekur gögn frá cpu og sýnir mynd útfrá því.
+3. Rasterisation er það ferli að taka myndir sem eru með vector formatið og breyta þeim í pixla.
+4. GLSL er shading tungumálið sem er notað í OpenGL.
+5. Vertex er punkturinn þar sem tvær línur hittast eins og í 30° horni þá.
+6. Primitive er mest basic graphics outputtið, og sýnir t.d línur, punkta og hringi.
+7. Fragments eru gögn sem eru no
