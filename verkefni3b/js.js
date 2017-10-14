@@ -10,7 +10,7 @@ renderer.setClearColor(0xf0f0f0, 1);
 
 controls = new THREE.OrbitControls(camera, renderer.domElement);
 // create the cube
-var geometry = new THREE.BoxGeometry(1, 1, 1);
+var geometry = new THREE.BoxGeometry(100, 100, 100);
 for ( var i = 0; i < geometry.faces.length; i += 2 ) {
 
 					var hex = Math.random() * 0xffffff;
@@ -44,7 +44,7 @@ light.position.set(20, 20, 20);
 scene.add(light);
 
 // set the camera
-camera.position.z = 5;
+camera.position.z = 500;
 
 // define an animation loop
 var render = function() {
