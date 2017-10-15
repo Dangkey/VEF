@@ -1,4 +1,3 @@
-var stormtrooper;
 var width = window.innerWidth;
 var height = window.innerHeight;
 var scene = new THREE.Scene();
@@ -40,14 +39,11 @@ scene.add(cube);
 
 var loadingManager = new THREE.LoadingManager(function() {
 
-  scene.add(stormtrooper);
-
 });
 
-var loader = new THREE.ColladaLoader(loadingManager);
-loader.options.convertUpAxis = true;
-loader.load("stormtrooper.dae", function(obj) {
-  stormtrooper = collada.scene;
+var loader = new THREE.ObjectLoader();
+loader.load("earth.obj", function(obj) {
+  scene.add(obj);
 });
 
 // create lights
