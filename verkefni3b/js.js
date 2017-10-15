@@ -1,4 +1,3 @@
-var earth;
 var width = window.innerWidth;
 var height = window.innerHeight;
 var scene = new THREE.Scene();
@@ -39,15 +38,6 @@ var material = new THREE.MeshPhysicalMaterial({
 var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
-var loadingManager = new THREE.LoadingManager(function() {
-  scene.add(earth);
-});
-
-var loader = new THREE.ColladaLoader(loadingManager);
-loader.options.convertUpAxis = true;
-loader.load('earth.dae', function(collada) {
-  earth = collada.scene;
-});
 
 // create lights
 
