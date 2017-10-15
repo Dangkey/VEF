@@ -1,3 +1,4 @@
+var earth;
 var width = window.innerWidth;
 var height = window.innerHeight;
 var scene = new THREE.Scene();
@@ -10,16 +11,17 @@ renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 renderer.setClearColor(0xf0f0f0, 1);
 
-window.addEventListener( 'resize', onWindowResize, false );
+window.addEventListener('resize', onWindowResize, false);
+
 function onWindowResize() {
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
+  windowHalfX = window.innerWidth / 2;
+  windowHalfY = window.innerHeight / 2;
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
-			}
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
 
 controls = new THREE.OrbitControls(camera, renderer.domElement);
 // create the cube
@@ -38,12 +40,13 @@ var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 var loadingManager = new THREE.LoadingManager(function() {
-
+  scene.add(earth);
 });
 
-var loader = new THREE.ObjectLoader();
-loader.load("earth.obj", function(obj) {
-  scene.add(obj);
+var loader = new THREE.ColladaLoader(loadingManager);
+loader.options.convertUpAxis = true;
+loader.load('earth.dae', function(collada) {
+  earth = collada.scene;
 });
 
 // create lights
