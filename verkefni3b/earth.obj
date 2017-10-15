@@ -1,12 +1,3 @@
-# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 25.01.2016 02:22:51
-
-mtllib earth.mtl
-
-#
-# object Sphere001
-#
-
 v  -4.4189 340.8998 -4.2436
 v  -4.4189 339.2582 -37.6576
 v  -7.6941 339.2582 -37.4967
