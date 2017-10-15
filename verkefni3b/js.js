@@ -11,6 +11,17 @@ renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 renderer.setClearColor(0xf0f0f0, 1);
 
+window.addEventListener( 'resize', onWindowResize, false );
+function onWindowResize() {
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
 controls = new THREE.OrbitControls(camera, renderer.domElement);
 // create the cube
 var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -27,11 +38,11 @@ var material = new THREE.MeshPhysicalMaterial({
 var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
-var loadingManager = new THREE.LoadingManager( function() {
+var loadingManager = new THREE.LoadingManager(function() {
 
-					scene.add( stormtrooper );
+  scene.add(stormtrooper);
 
-				} );
+});
 
 var loader = new THREE.ColladaLoader(loadingManager);
 loader.options.convertUpAxis = true;
