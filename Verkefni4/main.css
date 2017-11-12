@@ -99,7 +99,6 @@ h3 {
 .app video#camera-stream {
     display: none;
     width: 100%;
-    transform: rotateY(180deg);
 }
 
 .app img#snap {
@@ -176,6 +175,7 @@ h3 {
 
 .app video#camera-stream.visible, .app img#snap.visible, .app #error-message.visible {
     display: block;
+    transform: rotateY(180deg);
 }
 
 .app .controls.visible {
