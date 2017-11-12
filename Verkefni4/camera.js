@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var base64result = snap.substr(snap.indexOf(',') + 1);
         console.log(base64result);
 
-        var blob = b64toBlob(blob , contentType);
+        var blob = b64toBlob(base64result , contentType);
         var blobUrl = URL.createObjectURL(base64result);
         console.log(blob);
         // Show image.
