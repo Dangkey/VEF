@@ -97,8 +97,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         var snap = takeSnapshot();
         var contentType = 'image/png';
+        var base64result = snap.substr(snap.indexOf(',') + 1);
+        console.log(base64result);
 
-        var blob = b64toBlob(snap,contentType);
+        var blob = b64toBlob(base64result,contentType);
         var blobUrl = URL.createObjectURL(blob);
         console.log(blob);
         // Show image.
