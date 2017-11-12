@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(myndir);
             return myndin;
         }
+        analyzeSnapshot(myndin);
 
     }
 
@@ -170,3 +171,82 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 });
+makeblob = function (dataURL) {
+            var BASE64_MARKER = ';base64,';
+            if (dataURL.indexOf(BASE64_MARKER) == -1) {
+                var parts = dataURL.split(',');
+                var contentType = parts[0].split(':')[1];
+                var raw = decodeURIComponent(parts[1]);
+                return new Blob([raw], { type: contentType });
+            }
+            var parts = dataURL.split(BASE64_MARKER);
+            var contentType = parts[0].split(':')[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+
+            var uInt8Array = new Uint8Array(rawLength);
+
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            return new Blob([uInt8Array], { type: contentType });
+        };
+        function AnalyzeSnapshot(myndin) {
+            var apiKey = "433a44580bab4a18b44326977bd28a75";
+
+            var uriBase = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect";
+
+            // Request parameters.
+            var params = {
+                "returnFaceId": "true",
+                "returnFaceLandmarks": "false",
+                "returnFaceAttributes": "age,gender,facialHair,emotion",
+            };
+            // Call the API
+            $.ajax({
+                    url: uriBase + "?" + $.param(params),
+                    beforeSend: function(xhrObj) {
+                        xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+                        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey);
+                    },
+                    type: "POST",
+                    data: makeblob(myndin),
+                    processData: false
+                })
+                .done(function(response) {
+                    // Process the API response.
+                    processUpload(response);
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    // Display error message.
+                    var errorString = (errorThrown === "") ? "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+                    errorString += (jqXHR.responseText === "") ? "" : (jQuery.parseJSON(jqXHR.responseText).message) ?
+                        jQuery.parseJSON(jqXHR.responseText).message : jQuery.parseJSON(jqXHR.responseText).error.message;
+                    alert(errorString);
+                });
+        }
+
+        function processUpload(response) {
+            var arrayLength = response.length;
+
+            if (arrayLength > 0) {
+                var canvas = document.getElementById('myCanvas');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+
+                // Draw face rectangles into canvas.
+                for (var i = 0; i < arrayLength; i++) {
+                    var faceRectangle = response[i].faceRectangle;
+                    $("#responseTextArea").text("Gender: " + response[i].faceAttributes.gender +
+                        "\nAge: " + response[i].faceAttributes.age);
+                    var gender = response[i].faceAttributes.gender;
+                    context.rect(faceRectangle.left, faceRectangle.top, faceRectangle.width, faceRectangle.height);
+                }
+
+                context.lineWidth = 3;
+                context.strokeStyle = 'white';
+                context.stroke();
+            }
+        }
