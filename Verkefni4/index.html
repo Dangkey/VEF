@@ -1,52 +1,51 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Detect Faces Sample</title>
+    <title>Verkefni 4</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-<h1>Detect Faces:</h1>
-Enter the URL to an image that includes a face or faces, then click the <strong>Analyze face</strong> button.
-<br><br>
-Image to analyze: <input type="text" name="inputImage" id="inputImage" value="https://upload.wikimedia.org/wikipedia/commons/c/c3/RH_Louise_Lillian_Gish.jpg" />
-<button onclick="processImage()">Analyze face</button>
-<br><br>
-<div id="wrapper" style="width:1020px; display:table;">
-    <div id="jsonOutput" style="width:600px; display:table-cell;">
-        Response:
-        <br><br>
-        <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
+    <div id="wrapper">
+        <div id="imageDiv">
+            <canvas id="myCanvas">                
+            </canvas>
+        </div>
+        <div id="response">
+            Response:
+            <br><br>
+            <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
+        </div>
+        <div class="upload">
+            <label for="filename" class="btn">Upload an image</label>
+            <input type="file" id="filename" name="filename" accept="image/*" style="display:none">
+        </div>
     </div>
-    <div id="imageDiv" style="width:420px; display:table-cell;">
-        Source image:
-        <br><br>
-        <img id="sourceImage" width="400" />
+    <div class="container">
+
+        <div class="app">
+
+            <a href="#" id="start-camera" class="visible">Touch here to start the app.</a>
+            <video id="camera-stream"></video>
+            <img id="snap">
+
+            <p id="error-message"></p>
+
+            <div class="controls">
+                <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
+                <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
+                <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>
+            </div>
+
+            <!-- Hidden canvas element. Used for taking snapshot of video. -->
+            <canvas></canvas>
+
+        </div>
     </div>
-</div>
-<div class="container">
-
-  <div class="app">
-
-    <a href="#" id="start-camera" class="visible">Touch here to start the app.</a>
-    <video id="camera-stream"></video>
-    <img id="snap">
-
-    <p id="error-message"></p>
-
-    <div class="controls">
-      <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
-      <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
-      <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>
-    </div>
-
-    <!-- Hidden canvas element. Used for taking snapshot of video. -->
-    <canvas></canvas>
-
-  </div>
-
-</div>
-<script src="main.js" charset="utf-8"></script>
-<script src="camera.js" charset="utf-8"></script>
+        <script src="main.js" charset="utf-8"></script>
+        <script src="camera.js" charset="utf-8"></script>
 </body>
+
 </html>

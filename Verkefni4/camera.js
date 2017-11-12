@@ -1,5 +1,5 @@
 myndir = [];
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 
     // References to all the element we will need.
     var video = document.querySelector('#camera-stream'),
@@ -14,24 +14,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // The getUserMedia interface is used for handling camera input.
     // Some browsers need a prefix so here we're covering all the options
-    navigator.getMedia = ( navigator.getUserMedia ||
-    navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia ||
-    navigator.msGetUserMedia);
+    navigator.getMedia = (navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia);
 
 
-    if(!navigator.getMedia){
+    if (!navigator.getMedia) {
         displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
-    }
-    else{
+    } else {
 
         // Request the camera.
-        navigator.getMedia(
-            {
+        navigator.getMedia({
                 video: true
             },
             // Success Callback
-            function(stream){
+            function(stream) {
 
                 // Create an object URL for the video stream and
                 // set it as src of our HTLM video element.
@@ -45,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             },
             // Error Callback
-            function(err){
+            function(err) {
                 displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
             }
         );
@@ -56,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mobile browsers cannot play video without user input,
     // so here we're using a button to start it manually.
-    start_camera.addEventListener("click", function(e){
+    start_camera.addEventListener("click", function(e) {
 
         e.preventDefault();
 
@@ -67,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    take_photo_btn.addEventListener("click", function(e){
+    take_photo_btn.addEventListener("click", function(e) {
 
         e.preventDefault();
 
@@ -90,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    delete_photo_btn.addEventListener("click", function(e){
+    delete_photo_btn.addEventListener("click", function(e) {
 
         e.preventDefault();
 
@@ -109,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    function showVideo(){
+    function showVideo() {
         // Display the video stream and the controls.
 
         hideUI();
@@ -118,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    function takeSnapshot(){
+    function takeSnapshot() {
         // Here we're using a trick that involves a hidden canvas element.
 
         var hidden_canvas = document.querySelector('canvas'),
@@ -146,9 +144,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    function displayErrorMessage(error_msg, error){
+    function displayErrorMessage(error_msg, error) {
         error = error || "";
-        if(error){
+        if (error) {
             console.error(error);
         }
 
@@ -159,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    function hideUI(){
+    function hideUI() {
         // Helper function for clearing the app UI.
 
         controls.classList.remove("visible");
