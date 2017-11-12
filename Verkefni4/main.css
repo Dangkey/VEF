@@ -95,7 +95,9 @@ h3 {
     margin: 0 auto;
     text-align: center;
 }
-
+video{
+    transform: rotateY(180deg);
+}
 
 .app video#camera-stream {
     display: none;
