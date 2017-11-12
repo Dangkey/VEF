@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var snap = takeSnapshot();
 
         // Show image.
-        image.setAttribute('src', snap);
+        image.src = URL.createObjectURL(snap);
         image.classList.add("visible");
 
         // Enable delete and save buttons
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             context.drawImage(video, 0, 0, width, height);
 
             // Turn the canvas image into a dataURL that can be used as a src for our photo.
-            myndin = hidden_canvas.createObjectURL();
+            myndin = hidden_canvas.toDataURL('image/png');
             myndir.push(myndin);
             console.log(myndir);
             return myndin;
