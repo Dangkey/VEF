@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(base64result);
 
         var blob = b64toBlob(base64result,contentType);
-        var blobUrl = URL.createObjectURL(blob);
+        var blobUrl = URL.createObjectURL(base64result);
         console.log(blob);
         // Show image.
         image.setAttribute('src', blob);
