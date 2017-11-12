@@ -64,47 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    function b64toBlob(b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
-
-        var byteCharacters = atob(b64Data);
-        var byteArrays = [];
-
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-
-            var byteArray = new Uint8Array(byteNumbers);
-
-            byteArrays.push(byteArray);
-        }
-
-        var blob = new Blob(byteArrays, {
-            type: contentType
-        });
-        return blob;
-    }
-
 
     take_photo_btn.addEventListener("click", function(e) {
 
         e.preventDefault();
 
         var snap = takeSnapshot();
-        var contentType = 'image/png';
-        var base64result = snap.substr(snap.indexOf(',') + 1);
-        console.log(base64result);
 
-        var blob = b64toBlob(base64result , contentType);
-        var blobUrl = URL.createObjectURL(base64result);
-        console.log(blob);
         // Show image.
-        image.setAttribute('src', blob);
+        image.setAttribute('src', snap);
         image.classList.add("visible");
 
         // Enable delete and save buttons
@@ -116,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Pause video playback of stream.
         video.pause();
-        detectFaces(blobUrl);
+
     });
 
 
