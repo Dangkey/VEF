@@ -50,23 +50,30 @@ h3 {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
-#myCanvas{
-    width: 400px;
-    height: 400px;
+#wrapper{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #efefef;
 }
+#myCanvas{
+    position: relative;
+    }
 #imageDiv{
-    width: 400px;
-    height: 400px;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    margin: 0 auto;
 }
 #response{
-    width: 40%;
-    height: 30%;
+    width: 100%;
+    position: relative;
 }
 
 
 .container {
     max-width: 1000px;
-    margin: 50px auto;
+    margin: 0 auto;
     padding: 20px;
     background-color: #efefef;
 }
@@ -85,13 +92,14 @@ h3 {
     text-decoration: none;
     padding: 15px;
     opacity: 0.8;
-    margin: 50px auto;
+    margin: 0 auto;
     text-align: center;
 }
 
 .app video#camera-stream {
     display: none;
     width: 100%;
+    transform: rotateY(180deg);
 }
 
 .app img#snap {

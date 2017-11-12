@@ -139,8 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
             myndir.push(myndin);
             console.log(myndir);
             return myndin;
-
         }
+        detectFaces(myndin);
     }
 
 
@@ -166,5 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         snap.classList.remove("visible");
         error_message.classList.remove("visible");
     }
+
+
 
 });
